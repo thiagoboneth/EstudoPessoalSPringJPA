@@ -32,9 +32,9 @@ public class AppConstroller {
         return "Olá Mundo "+ nome;
     }
 
-    @GetMapping("/listaTodos")
+    @GetMapping("/listarTodos")
     @ResponseBody
-    public ResponseEntity<List<Usuario>> listaUsuario(){
+    public ResponseEntity<List<Usuario>> listarUsuario(){
         List<Usuario> usuarios = usuarioRepository.findAll();
         return new ResponseEntity<List<Usuario>>(usuarios,HttpStatus.OK);
     }
@@ -44,5 +44,12 @@ public class AppConstroller {
     public ResponseEntity<Usuario>salvarUsuario(@RequestBody Usuario usuario){
         Usuario user = usuarioRepository.save(usuario);
         return new ResponseEntity<Usuario>(user,HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/deletar")
+    @ResponseBody
+    public ResponseEntity<String> deletarUsuario (@RequestParam Long id){
+        usuarioRepository.deleteById(id);
+        return new ResponseEntity<String>("Usuário deletado com sucesso!", HttpStatus.OK);
     }
 }
