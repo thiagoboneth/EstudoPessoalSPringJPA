@@ -39,4 +39,10 @@ public class AppConstroller {
         return new ResponseEntity<List<Usuario>>(usuarios,HttpStatus.OK);
     }
 
+    @PostMapping("/salvar")
+    @ResponseBody
+    public ResponseEntity<Usuario>salvarUsuario(@RequestBody Usuario usuario){
+        Usuario user = usuarioRepository.save(usuario);
+        return new ResponseEntity<Usuario>(user,HttpStatus.CREATED);
+    }
 }
