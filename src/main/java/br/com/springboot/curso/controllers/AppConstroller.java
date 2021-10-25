@@ -43,5 +43,11 @@ public class AppConstroller {
         return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
     }
 
+    @PutMapping("/atualizar")
+    @ResponseBody
+    public ResponseEntity<Usuario>atualizarUsuario(@RequestBody Usuario usuario){
+        Usuario user = usuarioRepository.saveAndFlush(usuario);
+        return new ResponseEntity<Usuario>(user,HttpStatus.OK);
+    }
 
 }
