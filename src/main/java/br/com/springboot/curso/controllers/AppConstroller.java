@@ -45,7 +45,11 @@ public class AppConstroller {
 
     @PutMapping("/atualizar")
     @ResponseBody
-    public ResponseEntity<Usuario>atualizarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<?>atualizarUsuario(@RequestBody Usuario usuario){
+
+        if (usuario.getId() == null){
+            return new ResponseEntity<String>("Erro, não foi possível localizar o ID. Tente novamente",HttpStatus.BAD_REQUEST);
+        }
         Usuario user = usuarioRepository.saveAndFlush(usuario);
         return new ResponseEntity<Usuario>(user,HttpStatus.OK);
     }
