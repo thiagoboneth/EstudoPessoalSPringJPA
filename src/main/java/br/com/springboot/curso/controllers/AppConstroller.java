@@ -57,7 +57,7 @@ public class AppConstroller {
     @GetMapping("/buscarPorNome")
     @ResponseBody
     public ResponseEntity<List<Usuario>> buscarPorNome (@RequestParam(name = "name") String name){
-        List<Usuario> usuario = usuarioRepository.buscarPorNome(name);
+        List<Usuario> usuario = usuarioRepository.buscarPorNome(name.trim().toUpperCase());
         return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
     }
 }
