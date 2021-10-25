@@ -2,10 +2,14 @@ package br.com.springboot.curso.repository;
 
 import br.com.springboot.curso.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.events.Event;
+
+import java.util.List;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
+    @Query(value = "select u from Usuario u where u.nome like %?1%")
+    List<Usuario> buscarPorNome(String name);
 }
